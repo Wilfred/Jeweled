@@ -14,3 +14,13 @@ Also gains a 'fire gem'.
 Scores in subsequent rounds increase by 50 points per level.
 
 """
+
+import autopy
+from time import sleep
+
+if __name__ == '__main__':
+    # TODO: use xdg-open
+    print "Starting in 10 seconds, please switch to bejeweled"
+    sleep(10)
+    
+    autopy.bitmap.capture_screen().save('screengrab.png')
