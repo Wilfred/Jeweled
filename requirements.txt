@@ -1,0 +1,2 @@
+autopy==0.51
+wsgiref==0.1.2
