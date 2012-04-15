@@ -41,6 +41,7 @@ def get_board_position():
         # top-left corner is slightly offset:
         return (raw_x, raw_y + 15)
     else:
+        # TODO: also check bottom right corner is visible
         raise BoardNotVisible()
 
 
