@@ -15,6 +15,7 @@ Scores in subsequent rounds increase by 50 points per level.
 
 """
 
+from __future__ import division
 import autopy
 from time import sleep
 
@@ -80,7 +81,7 @@ def get_jewel_colours(jewel_bitmaps):
         for bitmap in bitmap_row:
 
             # get the centre of the bitmap
-            centre = bitmap.get_portion((GRID_WIDTH / 2 - CENTRE_SIZE / 2, GRID_HEIGHT / 2 - CENTRE_SIZE / 2),
+            centre = bitmap.get_portion((GRID_WIDTH // 2 - CENTRE_SIZE // 2, GRID_HEIGHT // 2 - CENTRE_SIZE // 2),
                                         (CENTRE_SIZE, CENTRE_SIZE))
             centre.save('centre.png')
 
