@@ -63,8 +63,31 @@ def get_jewel_bitmaps():
 
         rows.append(row)
 
-    # last jewel to test positioning
-    rows[-1][-1].save('jewel.png')
+    return rows
+
+
+CENTRE_SIZE = 50
+
+def get_jewel_colours(jewel_bitmaps):
+    """We get the average colour of the centre of the bitmap of each jewel."""
+
+    rows = []
+
+    for bitmap_row in jewel_bitmaps:
+        row = []
+
+        for bitmap in bitmap_row:
+
+            # get the centre of the bitmap
+            centre = bitmap.get_portion((GRID_WIDTH / 2 - CENTRE_SIZE / 2, GRID_HEIGHT / 2 - CENTRE_SIZE / 2),
+                                        (CENTRE_SIZE, CENTRE_SIZE))
+            centre.save('centre.png')
+
+        rows.append(row)
+
+    return rows
+
+
     
 
 if __name__ == '__main__':
@@ -74,7 +97,8 @@ if __name__ == '__main__':
 
     while True:
         try:
-            get_jewel_bitmaps()
+            bitmaps = get_jewel_bitmaps()
+            colours = get_jewel_colours(bitmaps)
         except BoardNotVisible:
             print "No board visible."
 
