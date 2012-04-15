@@ -25,9 +25,34 @@ BOARD_Y = 253
 GRID_WIDTH = GRID_HEIGHT = 80
 GRID_SIZE = 8
 
+class BoardNotVisible(Exception): pass
+
+def get_board_position():
+    """Find the co-ordinates of the top left corner of the board."""
+    screen = autopy.bitmap.capture_screen()
+    board_corner = autopy.bitmap.Bitmap.open('board_corner.png')
+
+    board_position = screen.find_bitmap(board_corner)
+
+    if board_position:
+        raw_x, raw_y = board_position
+
+        # the board position is not on the board, so the actual
+        # top-left corner is slightly offset:
+        return (raw_x, raw_y + 15)
+    else:
+        raise BoardNotVisible()
+    
+
 if __name__ == '__main__':
     # TODO: use xdg-open
-    print "Starting in 10 seconds, please switch to bejeweled"
-    sleep(10)
-    
-    autopy.bitmap.capture_screen().save('screengrab.png')
+
+    print "Searching for board..."
+
+    while True:
+        try:
+            print get_board_position()
+        except BoardNotVisible:
+            print "No board visible."
+
+        sleep(1)
