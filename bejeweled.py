@@ -70,8 +70,8 @@ def get_jewel_bitmaps():
 
 CENTRE_SIZE = 50
 
-def get_jewel_colours(jewel_bitmaps):
-    """We get the average colour of the centre of the bitmap of each jewel."""
+def get_jewel_colors(jewel_bitmaps):
+    """We get the average color of the centre of the bitmap of each jewel."""
 
     rows = []
 
@@ -84,21 +84,21 @@ def get_jewel_colours(jewel_bitmaps):
             centre = bitmap.get_portion((GRID_WIDTH // 2 - CENTRE_SIZE // 2, GRID_HEIGHT // 2 - CENTRE_SIZE // 2),
                                         (CENTRE_SIZE, CENTRE_SIZE))
 
-            row.append(get_average_colour(centre))
+            row.append(get_average_color(centre))
 
         rows.append(row)
 
     return rows
 
 
-def get_average_colour(bitmap):
-    """Return an RGB tuple of the average colour of this bitmap."""
+def get_average_color(bitmap):
+    """Return an RGB tuple of the average color of this bitmap."""
     red_total, green_total, blue_total = 0, 0, 0
 
     for x in range(bitmap.width):
         for y in range(bitmap.height):
-            hex_colour = bitmap.get_color(x, y)
-            r, g, b = autopy.color.hex_to_rgb(hex_colour)
+            hex_color = bitmap.get_color(x, y)
+            r, g, b = autopy.color.hex_to_rgb(hex_color)
 
             red_total += r
             green_total += g
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     while True:
         try:
             bitmaps = get_jewel_bitmaps()
-            print get_jewel_colours(bitmaps)
+            print get_jewel_colors(bitmaps)
         except BoardNotVisible:
             print "No board visible."
 
