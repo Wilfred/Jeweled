@@ -22,8 +22,8 @@ from time import sleep
 BOARD_X = 1092
 BOARD_Y = 253
 
-GRID_WIDTH = GRID_HEIGHT = 80
-GRID_SIZE = 8
+GRID_WIDTH = GRID_HEIGHT = 82 # size in px of one grid element
+GRID_SIZE = 8 # number of rows/columns in grid
 
 class BoardNotVisible(Exception): pass
 
@@ -42,6 +42,29 @@ def get_board_position():
         return (raw_x, raw_y + 15)
     else:
         raise BoardNotVisible()
+
+
+def get_jewel_bitmaps():
+    x, y = get_board_position()
+
+    screen = autopy.bitmap.capture_screen()
+
+    rows = []
+
+    # every row
+    for i in range(GRID_SIZE):
+        row = []
+
+        # every jewel in that row
+        for j in range(GRID_SIZE):
+            jewel_position = (x + GRID_WIDTH * j, y + GRID_HEIGHT * i)
+            jewel_bitmap = screen.get_portion(jewel_position, (GRID_WIDTH, GRID_HEIGHT))
+            row.append(jewel_bitmap)
+
+        rows.append(row)
+
+    # last jewel to test positioning
+    rows[-1][-1].save('jewel.png')
     
 
 if __name__ == '__main__':
@@ -51,7 +74,7 @@ if __name__ == '__main__':
 
     while True:
         try:
-            print get_board_position()
+            get_jewel_bitmaps()
         except BoardNotVisible:
             print "No board visible."
 
