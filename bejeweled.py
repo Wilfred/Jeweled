@@ -96,7 +96,7 @@ def get_jewel_names(jewel_colors):
         row = []
 
         for color in color_row:
-            row.append(get_closest_color(color))
+            row.append(get_closest_jewel(color))
 
         rows.append(row)
 
@@ -136,7 +136,7 @@ JEWELS = {
 }
 
 
-def get_closest_color(color):
+def get_closest_jewel(color):
     """Given a color from the screen, find the closest jewel color."""
     first_color = JEWELS.keys()[0]
 
@@ -173,7 +173,10 @@ if __name__ == '__main__':
         try:
             bitmaps = get_jewel_bitmaps()
             colors = get_jewel_colors(bitmaps)
-            print get_jewel_names(colors)
+
+            for row in get_jewel_names(colors):
+                print row
+                
         except BoardNotVisible:
             print "No board visible."
 
