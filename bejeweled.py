@@ -1,8 +1,5 @@
 """Bejeweled: An automated bot for HTML 5 Bejeweled.
 
-Bejeweled is at: http://bejeweled.popcap.com/html5/
-Mode targeted: Classic
-
 Scoring in first round:
 
 3 in a row: 50
