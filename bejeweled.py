@@ -15,6 +15,8 @@ Scores in subsequent rounds increase by 50 points per level.
 from __future__ import division
 import autopy
 from time import sleep
+from operator import sub
+from math import sqrt
 
 GRID_WIDTH = GRID_HEIGHT = 51 # size in px of one grid element
 GRID_SIZE = 8 # number of rows/columns in grid
@@ -106,29 +108,43 @@ def get_average_color(bitmap):
     return (average_red, average_green, average_blue)
 
 
-ORANGE = (126, 81, 47)
-GREEN = (34, 125, 56)
-PURPLE = (92, 40, 104)
-WHITE = (114, 118, 122)
-YELLOW = (112, 108, 53)
-RED = (145, 38, 54)
+# TODO: wildcard jewel
+JEWELS = {
+    "orange": (126, 81, 47),
+    "green": (34, 125, 56),
+    "purple": (92, 40, 104),
+    "white": (114, 118, 122),
+    "yellow": (112, 108, 53),
+    "red": (145, 38, 54),
+}
 
 
-def is_approximate_color(actual_color, expected_color):
-    actual_r, actual_b, actual_g = actual_color
-    expected_r, expected_b, expected_g = expected_color
+def get_closest_color(color):
+    """Given a color from the screen, find the closest jewel color."""
+    first_color = JEWELS.keys()[0]
 
-    if not expected_r - 10 <= actual_r <= expected_r + 10:
-        return False
+    # initialise
+    closest_color = first_color
+    shortest_distance = get_distance(color, JEWELS[first_color])
 
-    if not expected_g - 10 <= actual_g <= expected_g + 10:
-        return False
+    # find the closest color
+    for jewel_name, jewel_color in JEWELS.items():
+        distance = get_distance(color, jewel_color)
 
-    if not expected_b - 10 <= actual_b <= expected_b + 10:
-        return False
+        if distance < shortest_distance:
+            shortest_distance = distance
+            closest_color = jewel_name
 
-    return True
-    
+    return closest_color
+
+
+def get_distance(x, y):
+    """Find the Euclidean distance between two n-dimensional points."""
+    displacement = map(sub, x, y)
+    distance = sqrt(sum(displacement))
+
+    return distance
+
 
 if __name__ == '__main__':
     # TODO: use xdg-open
