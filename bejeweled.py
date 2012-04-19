@@ -107,6 +107,14 @@ def get_average_color(bitmap):
     return (average_red, average_green, average_blue)
 
 
+ORANGE = (126, 81, 47)
+GREEN = (34, 125, 56)
+PURPLE = (92, 40, 104)
+WHITE = (114, 118, 122)
+YELLOW = (112, 108, 53)
+RED = (145, 38, 54)
+
+
 def is_approximate_color(actual_color, expected_color):
     actual_r, actual_b, actual_g = actual_color
     expected_r, expected_b, expected_g = expected_color
