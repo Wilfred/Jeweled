@@ -16,7 +16,7 @@ from __future__ import division
 import autopy
 from time import sleep
 
-GRID_WIDTH = GRID_HEIGHT = 82 # size in px of one grid element
+GRID_WIDTH = GRID_HEIGHT = 51 # size in px of one grid element
 GRID_SIZE = 8 # number of rows/columns in grid
 
 class BoardNotVisible(Exception): pass
@@ -33,7 +33,7 @@ def get_board_position():
 
         # the board position is not on the board, so the actual
         # top-left corner is slightly offset:
-        return (raw_x, raw_y + 15)
+        return (raw_x + 1, raw_y + 9)
     else:
         # TODO: also check bottom right corner is visible
         raise BoardNotVisible()

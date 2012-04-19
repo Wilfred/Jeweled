@@ -8,7 +8,7 @@ GPLv3 license.
 ## Bejeweled target
 
 Bejeweled is at http://bejeweled.popcap.com/html5/ and this bot
-assumes the HD mode.
+assumes the SD mode since its maximum resolution is lower.
 
 We are targetting the 'classic' mode, so there are no time
 constraints.
