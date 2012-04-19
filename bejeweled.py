@@ -16,10 +16,6 @@ from __future__ import division
 import autopy
 from time import sleep
 
-# TODO: dynamically calculate board position
-BOARD_X = 1092
-BOARD_Y = 253
-
 GRID_WIDTH = GRID_HEIGHT = 82 # size in px of one grid element
 GRID_SIZE = 8 # number of rows/columns in grid
 
