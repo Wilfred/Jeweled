@@ -86,6 +86,21 @@ def get_jewel_colors(jewel_bitmaps):
     return rows
 
 
+def get_jewel_names(jewel_colors):
+    """Given a grid of jewel colors, get their names."""
+    rows = []
+
+    for color_row in jewel_colors:
+        row = []
+
+        for color in color_row:
+            row.append(get_closest_color(color))
+
+        rows.append(row)
+
+    return rows
+
+
 def get_average_color(bitmap):
     """Return an RGB tuple of the average color of this bitmap."""
     red_total, green_total, blue_total = 0, 0, 0
@@ -155,7 +170,8 @@ if __name__ == '__main__':
     while True:
         try:
             bitmaps = get_jewel_bitmaps()
-            get_jewel_colors(bitmaps)
+            colors = get_jewel_colors(bitmaps)
+            print get_jewel_names(colors)
         except BoardNotVisible:
             print "No board visible."
 
