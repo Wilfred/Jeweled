@@ -139,10 +139,11 @@ def get_closest_color(color):
 
 
 def get_distance(x, y):
-    """Find the Euclidean distance between two n-dimensional points."""
-    displacement = map(sub, x, y)
-    distance = sqrt(sum(displacement))
+    """Find the Euclidean distance between two 3-dimensional points."""
+    p1, p2, p3 = x
+    q1, q2, q3 = y
 
+    distance = sqrt((p1 - q1) ** 2 + (p2 - q2) ** 2 + (p3 - q3) ** 2)
     return distance
 
 
