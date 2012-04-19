@@ -81,6 +81,7 @@ def get_jewel_colors(jewel_bitmaps):
 
         rows.append(row)
 
+    print rows[0][0]
     return rows
 
 
@@ -105,6 +106,21 @@ def get_average_color(bitmap):
 
     return (average_red, average_green, average_blue)
 
+
+def is_approximate_color(actual_color, expected_color):
+    actual_r, actual_b, actual_g = actual_color
+    expected_r, expected_b, expected_g = expected_color
+
+    if not expected_r - 10 <= actual_r <= expected_r + 10:
+        return False
+
+    if not expected_g - 10 <= actual_g <= expected_g + 10:
+        return False
+
+    if not expected_b - 10 <= actual_b <= expected_b + 10:
+        return False
+
+    return True
     
 
 if __name__ == '__main__':
@@ -115,7 +131,7 @@ if __name__ == '__main__':
     while True:
         try:
             bitmaps = get_jewel_bitmaps()
-            print get_jewel_colors(bitmaps)
+            get_jewel_colors(bitmaps)
         except BoardNotVisible:
             print "No board visible."
 
