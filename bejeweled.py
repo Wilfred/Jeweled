@@ -65,7 +65,7 @@ def get_jewel_bitmaps():
     return rows
 
 
-CENTRE_SIZE = 50
+CENTRE_SIZE = 30
 
 def get_jewel_colors(jewel_bitmaps):
     """We get the average color of the centre of the bitmap of each jewel."""
@@ -127,13 +127,13 @@ def get_average_color(bitmap):
 
 # TODO: wildcard jewel
 JEWELS = {
-    "orange": (126, 81, 47),
-    "green": (34, 125, 56),
-    "purple": (92, 40, 104),
-    "white": (114, 118, 122),
-    "yellow": (112, 108, 53),
-    "red": (145, 38, 54),
-    "blue": (39, 86, 128)
+    "orange": (226, 130, 49),
+    "green": (40, 209, 71),
+    "purple": (150, 42, 158),
+    "white": (206, 206, 206),
+    "yellow": (202, 179, 37),
+    "red": (230, 24, 52),
+    "blue": (21, 113, 197)
 }
 
 
