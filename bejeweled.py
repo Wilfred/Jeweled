@@ -13,10 +13,12 @@ Scores in subsequent rounds increase by 50 points per level.
 """
 
 from __future__ import division
-import autopy
+
 from time import sleep
-from operator import sub
 from math import sqrt
+
+
+import autopy
 
 GRID_WIDTH = GRID_HEIGHT = 51 # size in px of one grid element
 GRID_SIZE = 8 # number of rows/columns in grid
