@@ -81,7 +81,6 @@ def get_jewel_colors(jewel_bitmaps):
 
         rows.append(row)
 
-    print rows[0][0]
     return rows
 
 
