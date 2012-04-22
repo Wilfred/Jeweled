@@ -78,5 +78,5 @@ def get_scoring_moves(grid):
         move_a, move_b = move
         grid_after_move = get_swapped_position(grid, move_a, move_b)
 
-        if count_scoring_lines(grid_after_move) < 0:
+        if count_scoring_lines(grid_after_move) > 0:
             yield move
