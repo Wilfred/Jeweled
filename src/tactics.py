@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import board
 
 def count_scoring_lines(rows):
@@ -48,3 +50,30 @@ def get_all_moves():
 
 # we only need to calculate the possible moves once
 MOVES = list(get_all_moves())
+
+
+def get_swapped_position(grid, a_x, a_y, b_x, b_y):
+    """Return a new grid showing the layout if the jewel at A is
+    swapped with B.
+
+    """
+    new_grid = deepcopy(grid)
+
+    temp = new_grid[a_y][a_x]
+    new_grid[a_y][a_x] = new_grid[b_y][b_x]
+    new_grid[b_y][b_x] = temp
+
+    return new_grid
+
+
+def get_scoring_moves(grid):
+    """Given a grid of jewels, find all the moves that can make at
+    least one line of three.
+
+    """
+    for move in MOVES:
+        move_a, move_b = move
+        grid_after_move = get_swapped_position(grid, move_a, move_b)
+
+        if count_scoring_lines(grid_after_move) < 0:
+            yield move
