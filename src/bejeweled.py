@@ -21,6 +21,7 @@ import autopy
 import board
 import mouse
 from jewels import get_closest_jewel
+from tactics import get_scoring_moves
 
 
 def get_jewel_bitmaps():
@@ -124,9 +125,9 @@ if __name__ == '__main__':
     while True:
         try:
             grid = get_current_grid()
+            scoring_moves = get_scoring_moves(grid)
 
-            for row in grid:
-                print row
+            print scoring_moves
 
         except board.NotVisible:
             print "No board visible."
