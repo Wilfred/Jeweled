@@ -1,4 +1,4 @@
-
+import board
 
 def count_scoring_lines(rows):
     """Count the number of rows and columns that are three of the same
@@ -25,5 +25,26 @@ def count_scoring_lines(rows):
     return lines
 
 
-def get_all_moves(grid):
-    """Given a list of all"""
+def get_all_moves():
+    """Return a list of possible moves on a Bejeweled grid.
+
+    >>> get_all_moves()
+    [((0, 0), (0, 1)), ((0, 1), (0, 2)) ... etc]
+
+    """
+    # horizontal moves
+    for x in range(board.SIZE - 2):
+        for y in range(board.SIZE - 1):
+
+            # swap a jewel with the jewel to the right
+            yield (x, y), (x + 1, y)
+
+    for x in range(board.SIZE - 1):
+        for y in range(board.SIZE - 2):
+
+            # swap a jewel with the jewel underneath
+            yield (x, y), (x, y + 1)
+
+
+# we only need to calculate the possible moves once
+MOVES = list(get_all_moves())
