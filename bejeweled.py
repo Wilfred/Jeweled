@@ -19,26 +19,27 @@ from math import sqrt
 
 import autopy
 
-from positioning import get_board_position, BoardNotVisible
+import board
 
-GRID_WIDTH = GRID_HEIGHT = 51 # size in px of one grid element
-GRID_SIZE = 8 # number of rows/columns in grid
 
 def get_jewel_bitmaps():
-    x, y = get_board_position()
+    x, y = board.get_position()
 
     screen = autopy.bitmap.capture_screen()
 
     rows = []
 
     # every row
-    for i in range(GRID_SIZE):
+    for i in range(board.SIZE):
         row = []
 
         # every jewel in that row
-        for j in range(GRID_SIZE):
-            jewel_position = (x + GRID_WIDTH * j, y + GRID_HEIGHT * i)
-            jewel_bitmap = screen.get_portion(jewel_position, (GRID_WIDTH, GRID_HEIGHT))
+        for j in range(board.SIZE):
+            jewel_position = (x + board.ELEMENT_WIDTH_PX * j,
+                              y + board.ELEMENT_HEIGHT_PX * i)
+            jewel_bitmap = screen.get_portion(
+                jewel_position, (board.ELEMENT_WIDTH_PX, board.ELEMENT_HEIGHT_PX))
+            
             row.append(jewel_bitmap)
 
         rows.append(row)
@@ -59,7 +60,7 @@ def get_jewel_colors(jewel_bitmaps):
         for bitmap in bitmap_row:
 
             # get the centre of the bitmap
-            centre = bitmap.get_portion((GRID_WIDTH // 2 - CENTRE_SIZE // 2, GRID_HEIGHT // 2 - CENTRE_SIZE // 2),
+            centre = bitmap.get_portion((board.ELEMENT_WIDTH_PX // 2 - CENTRE_SIZE // 2, board.ELEMENT_HEIGHT_PX // 2 - CENTRE_SIZE // 2),
                                         (CENTRE_SIZE, CENTRE_SIZE))
 
             row.append(get_average_color(centre))
@@ -159,7 +160,7 @@ if __name__ == '__main__':
             for row in get_jewel_names(colors):
                 print row
                 
-        except BoardNotVisible:
+        except board.NotVisible:
             print "No board visible."
 
         sleep(1)
