@@ -35,14 +35,14 @@ def get_all_moves():
 
     """
     # horizontal moves
-    for x in range(board.SIZE - 2):
-        for y in range(board.SIZE - 1):
+    for x in range(board.SIZE - 1):
+        for y in range(board.SIZE):
 
             # swap a jewel with the jewel to the right
             yield (x, y), (x + 1, y)
 
-    for x in range(board.SIZE - 1):
-        for y in range(board.SIZE - 2):
+    for x in range(board.SIZE):
+        for y in range(board.SIZE - 1):
 
             # swap a jewel with the jewel underneath
             yield (x, y), (x, y + 1)
