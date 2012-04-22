@@ -52,11 +52,14 @@ def get_all_moves():
 MOVES = list(get_all_moves())
 
 
-def get_swapped_position(grid, a_x, a_y, b_x, b_y):
+def get_swapped_position(grid, a, b):
     """Return a new grid showing the layout if the jewel at A is
     swapped with B.
 
     """
+    a_x, a_y = a
+    b_x, b_y = b
+    
     new_grid = deepcopy(grid)
 
     temp = new_grid[a_y][a_x]
