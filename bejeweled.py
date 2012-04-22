@@ -20,6 +20,7 @@ from math import sqrt
 import autopy
 
 import board
+import mouse
 
 
 def get_jewel_bitmaps():
@@ -154,11 +155,7 @@ if __name__ == '__main__':
 
     while True:
         try:
-            bitmaps = get_jewel_bitmaps()
-            colors = get_jewel_colors(bitmaps)
-
-            for row in get_jewel_names(colors):
-                print row
+            mouse.move_to_jewel(7, 7)
                 
         except board.NotVisible:
             print "No board visible."
