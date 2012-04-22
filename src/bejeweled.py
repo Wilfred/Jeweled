@@ -86,6 +86,14 @@ def get_jewel_names(jewel_colors):
     return rows
 
 
+def get_current_grid():
+    bitmaps = get_jewel_bitmaps()
+    colors = get_jewel_colors(bitmaps)
+    grid = get_jewel_names(colors)
+
+    return grid
+
+
 def get_average_color(bitmap):
     """Return an RGB tuple of the average color of this bitmap."""
     red_total, green_total, blue_total = 0, 0, 0
@@ -115,8 +123,11 @@ if __name__ == '__main__':
 
     while True:
         try:
-            mouse.swap_jewels(4, 0, 5, 0)
-                
+            grid = get_current_grid()
+
+            for row in grid:
+                print row
+
         except board.NotVisible:
             print "No board visible."
 
