@@ -3,10 +3,8 @@ from jewels import get_closest_jewel
 
 import autopy
 
-def get_jewel_bitmaps():
+def get_jewel_bitmaps(screen_bitmap):
     x, y = board.get_position()
-
-    screen = autopy.bitmap.capture_screen()
 
     rows = []
 
@@ -18,7 +16,7 @@ def get_jewel_bitmaps():
         for j in range(board.SIZE):
             jewel_position = (x + board.ELEMENT_WIDTH_PX * j,
                               y + board.ELEMENT_HEIGHT_PX * i)
-            jewel_bitmap = screen.get_portion(
+            jewel_bitmap = screen_bitmap.get_portion(
                 jewel_position, (board.ELEMENT_WIDTH_PX, board.ELEMENT_HEIGHT_PX))
             
             row.append(jewel_bitmap)
@@ -67,8 +65,10 @@ def get_jewel_names(jewel_colors):
 
 
 def get_current_grid():
-    bitmaps = get_jewel_bitmaps()
-    colors = get_jewel_colors(bitmaps)
+    screen_bitmap = autopy.bitmap.capture_screen()
+
+    jewel_bitmaps = get_jewel_bitmaps(screen_bitmap)
+    colors = get_jewel_colors(jewel_bitmaps)
     grid = get_jewel_names(colors)
 
     return grid
