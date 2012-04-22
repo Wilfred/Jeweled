@@ -17,3 +17,17 @@ def move_to_jewel(x, y):
     target_y = int(board_y + (y + 0.5) * board.ELEMENT_HEIGHT_PX)
     autopy.mouse.move(target_x, target_y)
 
+
+def swap_jewels(a_x, a_y, b_x, b_y):
+    """Swap the jewels A and B according to their positions on the
+    Bejeweled grid.
+
+
+    >>> swap_jewels(0, 0, 0, 1)
+
+    """
+    move_to_jewel(a_x, a_y)
+    autopy.mouse.click()
+
+    move_to_jewel(b_x, b_y)
+    autopy.mouse.click()

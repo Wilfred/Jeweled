@@ -155,7 +155,7 @@ if __name__ == '__main__':
 
     while True:
         try:
-            mouse.move_to_jewel(7, 7)
+            mouse.swap_jewels(4, 0, 5, 0)
                 
         except board.NotVisible:
             print "No board visible."
