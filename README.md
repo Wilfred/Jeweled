@@ -24,3 +24,12 @@ Python 2.X, Pip and virtualenv are required.
      (jeweled) $ pip install -r requirements.txt
      (jeweled) $ python src/bejeweled.py
 
+## Scores
+
+Highest score achieved: 363,760
+
+How scores are calculated: http://support.popcap.com/bejeweled-html5
+
+Basic summary of Bejeweled strategy: http://alexx-kay.livejournal.com/131629.html
+
+
