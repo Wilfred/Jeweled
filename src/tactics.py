@@ -70,13 +70,22 @@ def get_swapped_position(grid, a, b):
 
 
 def get_scoring_moves(grid):
-    """Given a grid of jewels, find all the moves that can make at
-    least one line of three.
+    """Given a grid of jewels, find the highest scoring moves
+    (without lookahead to future board states.)
 
     """
+    scoring_moves = []
+    
     for move in MOVES:
         move_a, move_b = move
         grid_after_move = get_swapped_position(grid, move_a, move_b)
 
-        if count_scoring_lines(grid_after_move) > 0:
-            yield move
+        scoring_lines = count_scoring_lines(grid_after_move)
+        if scoring_lines > 0:
+            scoring_moves.append((move, scoring_lines))
+
+    # sort the moves, highest scoring first
+    scoring_moves.sort(key=lambda (move, score): score, reverse=True)
+
+    for move, score in scoring_moves:
+        yield move
