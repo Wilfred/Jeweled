@@ -125,9 +125,11 @@ if __name__ == '__main__':
     while True:
         try:
             grid = get_current_grid()
-            scoring_moves = get_scoring_moves(grid)
-
-            print scoring_moves
+            scoring_moves = list(get_scoring_moves(grid))
+            
+            # for now, we pick a scoring move arbitrarily
+            move_a, move_b = scoring_moves[0]
+            mouse.swap_jewels(move_a, move_b)
 
         except board.NotVisible:
             print "No board visible."

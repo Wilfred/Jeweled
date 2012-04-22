@@ -18,16 +18,18 @@ def move_to_jewel(x, y):
     autopy.mouse.move(target_x, target_y)
 
 
-def swap_jewels(a_x, a_y, b_x, b_y):
+def swap_jewels(a, b):
     """Swap the jewels A and B according to their positions on the
     Bejeweled grid.
 
 
-    >>> swap_jewels(0, 0, 0, 1)
+    >>> swap_jewels((0, 0), (0, 1))
 
     """
+    a_x, a_y = a
     move_to_jewel(a_x, a_y)
     autopy.mouse.click()
 
+    b_x, b_y = b
     move_to_jewel(b_x, b_y)
     autopy.mouse.click()
