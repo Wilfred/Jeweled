@@ -23,3 +23,7 @@ def count_scoring_lines(rows):
                 lines += 1
 
     return lines
+
+
+def get_all_moves(grid):
+    """Given a list of all"""

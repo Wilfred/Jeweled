@@ -12,7 +12,7 @@ SIZE = 8 # number of row elements/column elements in grid
 def get_position():
     """Find the co-ordinates of the top left corner of the board."""
     screen = autopy.bitmap.capture_screen()
-    board_corner = autopy.bitmap.Bitmap.open('board_corner.png')
+    board_corner = autopy.bitmap.Bitmap.open('resources/board_corner.png')
 
     board_position = screen.find_bitmap(board_corner)
 
