@@ -11,7 +11,7 @@ Bejeweled is at http://bejeweled.popcap.com/html5/ and this bot
 assumes the SD mode since its maximum resolution is lower.
 
 We are targetting the 'classic' mode, so there are no time
-constraints.
+constraints. Make sure you disable animated backgrounds.
 
 ## Usage
 
