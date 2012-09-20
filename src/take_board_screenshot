@@ -17,8 +17,8 @@ if __name__ == '__main__':
 
             screen_bitmap.save('board.png')
             print 'Saved board.png.'
+            break
 
         except board.NotVisible:
             print "Waiting for visible board..."
-
-        sleep(1)
+            sleep(1)
