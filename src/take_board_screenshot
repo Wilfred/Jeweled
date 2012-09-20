@@ -15,7 +15,7 @@ if __name__ == '__main__':
             screen_bitmap = autopy.bitmap.capture_screen()
             board.get_position(screen_bitmap)
 
-            board.save('board.png')
+            screen_bitmap.save('board.png')
             print 'Saved board.png.'
 
         except board.NotVisible:
