@@ -22,7 +22,7 @@ Python 2.X, Pip and virtualenv are required.
      $ virtualenv ~/.virtualenvs/jeweled
      $ . ~/.virtualenvs/jeweled/bin/activate
      (jeweled) $ pip install -r requirements.txt
-     (jeweled) $ python src/bejeweled.py
+     (jeweled) $ src/play_bejeweled
 
 ## Scores
 
