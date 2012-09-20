@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+from time import sleep
+
+import autopy
+
+import board
+
+
+if __name__ == '__main__':
+    print "Searching for board..."
+
+    while True:
+        try:
+            screen_bitmap = autopy.bitmap.capture_screen()
+            board.get_position(screen_bitmap)
+
+            board.save('board.png')
+            print 'Saved board.png.'
+
+        except board.NotVisible:
+            print "Waiting for visible board..."
+
+        sleep(1)
