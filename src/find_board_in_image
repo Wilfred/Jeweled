@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+from time import sleep
+import sys
+
+import autopy
+
+import board
+
+
+if __name__ == '__main__':
+   if len(sys.argv) < 2:
+      print "Usage: src/find_board_in_image <path to image>"
+      sys.exit(1)
+
+   path = sys.argv[1]
+   bitmap = autopy.bitmap.Bitmap.open(path)
+
+   try:
+      x, y = board.get_position(bitmap)
+      print "Found a board at position (%s, %s)" % (x, y)
+
+   except board.NotVisible:
+      print "No board visible on that image."
+
+
