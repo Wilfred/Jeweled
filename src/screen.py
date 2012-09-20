@@ -64,9 +64,7 @@ def get_jewel_names(jewel_colors):
     return rows
 
 
-def get_current_grid():
-    screen_bitmap = autopy.bitmap.capture_screen()
-
+def get_current_grid(screen_bitmap):
     jewel_bitmaps = get_jewel_bitmaps(screen_bitmap)
     colors = get_jewel_colors(jewel_bitmaps)
     grid = get_jewel_names(colors)

@@ -9,6 +9,8 @@ from __future__ import division
 
 from time import sleep
 
+import autopy
+
 import board
 import mouse
 from tactics import get_scoring_moves
@@ -22,12 +24,13 @@ if __name__ == '__main__':
 
     while True:
         try:
-            grid = get_current_grid()
+            screen_bitmap = autopy.bitmap.capture_screen()
+            grid = get_current_grid(screen_bitmap)
             scoring_moves = list(get_scoring_moves(grid))
             
             # for now, we pick a scoring move arbitrarily
             move_a, move_b = scoring_moves[0]
-            mouse.swap_jewels(move_a, move_b)
+            mouse.swap_jewels(screen_bitmap, move_a, move_b)
 
         except board.NotVisible:
             print "No board visible."
