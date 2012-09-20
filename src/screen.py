@@ -4,7 +4,7 @@ from jewels import get_closest_jewel
 import autopy
 
 def get_jewel_bitmaps(screen_bitmap):
-    x, y = board.get_position()
+    x, y = board.get_position(screen_bitmap)
 
     rows = []
 
