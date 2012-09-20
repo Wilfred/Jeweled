@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+from time import sleep
+import sys
+
+import autopy
+
+from screen import get_jewel_bitmaps
+import board
+
+
+if __name__ == '__main__':
+   if len(sys.argv) < 4:
+      print "Usage: src/cut_jewel_from_board <path to image> <x> <y>"
+      sys.exit(1)
+
+   path = sys.argv[1]
+   bitmap = autopy.bitmap.Bitmap.open(path)
+   x = int(sys.argv[2])
+   y = int(sys.argv[3])
+
+   try:
+       jewel_bitmaps = get_jewel_bitmaps(bitmap)
+       jewel_bitmap = jewel_bitmaps[x][y]
+       jewel_bitmap.save('jewel.png')
+       print "Saved jewel.png."
+       
+   except board.NotVisible:
+       print "No board visible on that image."
+       sys.exit(2)
