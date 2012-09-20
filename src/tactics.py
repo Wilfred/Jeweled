@@ -70,8 +70,8 @@ def get_swapped_position(grid, a, b):
 
 
 def get_scoring_moves(grid):
-    """Given a grid of jewels, find the highest scoring moves
-    (without lookahead to future board states.)
+    """Given a grid of jewels, find the moves that will put three or
+    more jewels in a line.
 
     """
     scoring_moves = []
@@ -82,10 +82,9 @@ def get_scoring_moves(grid):
 
         scoring_lines = count_scoring_lines(grid_after_move)
         if scoring_lines > 0:
-            scoring_moves.append((move, scoring_lines))
+            scoring_moves.append(move)
 
-    # sort the moves, highest scoring first
-    scoring_moves.sort(key=lambda (move, score): score, reverse=True)
-
-    for move, score in scoring_moves:
-        yield move
+    # sort the moves so the highest on the board comes first. Ideally
+    # we'd find the rows that are highest rather than the moves.
+    scoring_moves.sort(key=lambda ((from_x, from_y), (to_x, to_y)): (from_y, to_y))
+    return scoring_moves
