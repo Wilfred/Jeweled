@@ -23,15 +23,15 @@ def get_position(screen_bitmap):
     if board_position:
         raw_x, raw_y = board_position
         
-        # the board itself is offset from the left edge
-        x = raw_y + 199
-        y = raw_y + 32
-
         # check the diagonally opposite corner is on screen
         bottom_right_x = raw_x + WIDTH_IN_PX
         bottom_right_y = raw_y + HEIGHT_IN_PX
         if not screen_bitmap.point_in_bounds(bottom_right_x, bottom_right_y):
             raise NotVisible()
+
+        # the board itself is offset from the left edge
+        x = raw_x + 199
+        y = raw_y + 32
 
         return (x, y)
     else:
