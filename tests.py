@@ -2,6 +2,7 @@ from unittest import TestCase
 
 import autopy
 from board import get_position, NotVisible
+from screen import get_current_grid
 
 
 class BoardDetectionTest(TestCase):
@@ -39,3 +40,40 @@ class BoardDetectionTest(TestCase):
         """
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_left_part.png")
         self.assertRaises(NotVisible, get_position, bitmap)
+
+
+class JewelDetectionTest(TestCase):
+    def test_purple(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[0][4], 'purple')
+
+    def test_green(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[0][0], 'green')
+
+    def test_blue(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[0][1], 'blue')
+
+    def test_yellow(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[0][5], 'yellow')
+
+    def test_orange(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[0][3], 'orange')
+
+    def test_red(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[1][1], 'red')
+
+    def test_white(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[1][4], 'white')
