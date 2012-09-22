@@ -1,8 +1,10 @@
 from unittest import TestCase
 
 import autopy
+
 from board import get_position, NotVisible
 from screen import get_current_grid
+from tactics import get_scoring_moves
 
 
 class BoardDetectionTest(TestCase):
@@ -147,3 +149,19 @@ class WildcardJewelDetectionTest(TestCase):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_wildcard2.png")
         grid = get_current_grid(bitmap)
         self.assertEqual(grid[5][5], 'wildcard')
+
+
+class MovesTest(TestCase):
+    def test_valid_moves(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board2.png")
+        grid = get_current_grid(bitmap)
+        scoring_moves = get_scoring_moves(grid)
+
+        expected_moves = [((6,2), (7,2)), ((6, 3), (7, 3))]
+
+        # check we found all the expected moves
+        for move in expected_moves:
+            self.assertIn(move, scoring_moves)
+
+        # check there are no other moves found
+        self.assertEqual(len(scoring_moves), len(expected_moves))
