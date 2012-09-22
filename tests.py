@@ -78,6 +78,8 @@ class JewelDetectionTest(TestCase):
         grid = get_current_grid(bitmap)
         self.assertEqual(grid[1][4], 'white')
 
+
+class CrossJewelDetectionTest(TestCase):
     def test_yellow_cross(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_glowing_yellow.png")
         grid = get_current_grid(bitmap)
@@ -90,6 +92,8 @@ class JewelDetectionTest(TestCase):
         # todo: check it's special
         self.assertEqual(grid[2][7], 'green')
 
+
+class FireJewelDetectionTest(TestCase):
     def test_red_fire(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_red_fire.png")
         grid = get_current_grid(bitmap)
@@ -108,6 +112,8 @@ class JewelDetectionTest(TestCase):
         # todo: check it's special
         self.assertEqual(grid[5][6], 'purple')
 
+
+class WildcardJewelDetectionTest(TestCase):
     def test_wildcard(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_wildcard.png")
         grid = get_current_grid(bitmap)
