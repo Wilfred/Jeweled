@@ -4,27 +4,32 @@ import board
 
 def count_scoring_lines(rows):
     """Count the number of rows and columns that are three of the same
+    color.
+
+    """
+    return len(list(get_scoring_lines(rows)))
+
+
+def get_scoring_lines(rows):
+    """List all the rows and columns that are three of the same
     color. This 'cheats' for t-shapes, l-shapes and rows of four or
     more, since we just consider them to be multiple rows of three.
 
     """
-    lines = 0
 
     # horizontal lines of 3
-    for row in rows:
-        for i in range(len(row) - 2):
+    for y, row in enumerate(rows):
+        for x in range(len(row) - 2):
 
-            if row[i] == row[i+1] == row[i+2]:
-                lines += 1
+            if row[x] == row[x+1] == row[x+2]:
+                yield [(x, y), (x+1, y), (x+2, y)]
 
     # vertical lines of 3
-    for j in range(len(rows) - 2):
-        for i in range(len(rows[0])):
+    for y in range(len(rows) - 2):
+        for x in range(len(rows[0])):
 
-            if rows[j][i] == rows[j+1][i] == rows[j+2][i]:
-                lines += 1
-
-    return lines
+            if rows[y][x] == rows[y+1][x] == rows[y+2][x]:
+                yield [(x, y), (x, y+1), (x, y+2)]
 
 
 def get_all_moves():
@@ -88,3 +93,11 @@ def get_scoring_moves(grid):
     # we'd find the rows that are highest rather than the moves.
     scoring_moves.sort(key=lambda ((from_x, from_y), (to_x, to_y)): (from_y, to_y))
     return scoring_moves
+
+
+def get_grid_after_move(grid):
+    """Given a grid where some jewels are lined up, remove those lines
+    and move jewels down to fill the gaps. Note we just put None where
+    we don't know what will fill the gap.
+
+    """
