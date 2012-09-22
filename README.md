@@ -44,6 +44,10 @@ There are also convenience tools:
     green	yellow	blue	green	white	red	purple	green
     purple	blue	white	purple	yellow	yellow	red	purple
     purple	yellow	red	white	green	red	green	yellow
+    
+Running the tests:
+
+    $ nosetests
 
 ## Scores
 

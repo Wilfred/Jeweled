@@ -1,2 +1,4 @@
+argparse==1.2.1
 autopy==0.51
+nose==1.2.1
 wsgiref==0.1.2
