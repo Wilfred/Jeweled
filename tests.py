@@ -4,7 +4,7 @@ import autopy
 
 from board import get_position, NotVisible
 from screen import get_current_grid
-from tactics import get_scoring_moves
+from tactics import get_scoring_moves, get_swapped_position, get_grid_after_move
 
 
 class BoardDetectionTest(TestCase):
@@ -165,3 +165,14 @@ class MovesTest(TestCase):
 
         # check there are no other moves found
         self.assertEqual(len(scoring_moves), len(expected_moves))
+
+    def test_move_outcome(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board2.png")
+        grid = get_current_grid(bitmap)
+
+        grid = get_swapped_position(grid, (6, 2), (7, 2))
+        final_grid = get_grid_after_move(grid)
+
+        from pprint import pprint
+        pprint(final_grid)
+        1/0

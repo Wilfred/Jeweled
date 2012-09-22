@@ -101,3 +101,31 @@ def get_grid_after_move(grid):
     we don't know what will fill the gap.
 
     """
+    grid = deepcopy(grid)
+    
+    # find the jewels that will disappear
+    removed_jewels = set()
+    for line in get_scoring_lines(grid):
+        for jewel in line: # of the form (x, y)
+            removed_jewels.add(jewel)
+
+    # remove them
+    for x, y in removed_jewels:
+        print "Removing jewel:", (x, y)
+        grid[y][x] = None
+
+    # move all the jewels down if there's a space below
+    # TODO: just use a 'while changed' loop instead
+    for y in range(board.SIZE - 1):
+        for x in range(board.SIZE):
+
+            if grid[y + 1][x] is None:
+                # empty position below, move this one down
+                for above_y in range(y):
+                    grid[above_y + 1][x] = grid[above_y][x]
+
+                # set the top position to None, because we don't know
+                # what will fill it
+                grid[0][x] = None
+
+    return grid
