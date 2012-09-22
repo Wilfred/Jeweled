@@ -118,6 +118,18 @@ class FireJewelDetectionTest(TestCase):
         # todo: check it's special
         self.assertEqual(grid[5][6], 'purple')
 
+    def test_yellow_fire(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_yellow_green_fire.png")
+        grid = get_current_grid(bitmap)
+        # todo: check it's special
+        self.assertEqual(grid[3][6], 'yellow')
+
+    def test_green_fire(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_yellow_green_fire.png")
+        grid = get_current_grid(bitmap)
+        # todo: check it's special
+        self.assertEqual(grid[4][6], 'green')
+
 
 class WildcardJewelDetectionTest(TestCase):
     def test_wildcard(self):
