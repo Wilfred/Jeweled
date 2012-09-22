@@ -77,3 +77,9 @@ class JewelDetectionTest(TestCase):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
         grid = get_current_grid(bitmap)
         self.assertEqual(grid[1][4], 'white')
+
+    def test_yellow_cross(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_glowing_yellow.png")
+        grid = get_current_grid(bitmap)
+        # todo: check it's special
+        self.assertEqual(grid[2][5], 'yellow')
