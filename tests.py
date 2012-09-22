@@ -107,3 +107,13 @@ class JewelDetectionTest(TestCase):
         grid = get_current_grid(bitmap)
         # todo: check it's special
         self.assertEqual(grid[5][6], 'purple')
+
+    def test_wildcard(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_wildcard.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[5][5], 'wildcard')
+
+        # since the wildcard gem rotates, we have two images to test with
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_wildcard2.png")
+        grid = get_current_grid(bitmap)
+        self.assertEqual(grid[5][5], 'wildcard')

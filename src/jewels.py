@@ -14,7 +14,8 @@ JEWELS = {
     ("red", "normal"): (230, 24, 52),
     ("red", "fire"): (245, 48, 77),
     ("blue", "normal"): (21, 113, 197),
-    ("blue", "fire"): (52, 128, 199)
+    ("blue", "fire"): (52, 128, 199),
+    ("wildcard", "special"): (142, 158, 132)
 }
 
 
