@@ -84,6 +84,12 @@ class JewelDetectionTest(TestCase):
         # todo: check it's special
         self.assertEqual(grid[2][5], 'yellow')
 
+    def test_green_cross(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_green_cross.png")
+        grid = get_current_grid(bitmap)
+        # todo: check it's special
+        self.assertEqual(grid[2][7], 'green')
+
     def test_red_fire(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_red_fire.png")
         grid = get_current_grid(bitmap)

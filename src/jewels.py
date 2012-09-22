@@ -5,6 +5,7 @@ from math import sqrt
 JEWELS = {
     ("orange", "normal"): (226, 130, 49),
     ("green", "normal"): (40, 209, 71),
+    ("green", "cross"): (72, 223, 120),
     ("purple", "normal"): (150, 42, 158),
     ("purple", "fire"): (204, 94, 193),
     ("white", "normal"): (206, 206, 206),
