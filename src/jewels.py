@@ -10,6 +10,7 @@ JEWELS = {
     ("yellow", "normal"): (202, 179, 37),
     ("yellow", "cross"): (227, 227, 179),
     ("red", "normal"): (230, 24, 52),
+    ("red", "fire"): (245, 48, 77),
     ("blue", "normal"): (21, 113, 197)
 }
 
