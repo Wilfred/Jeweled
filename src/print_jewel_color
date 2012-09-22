@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+from time import sleep
+import sys
+
+import autopy
+
+from screen import get_jewel_bitmaps, get_jewel_colors
+import board
+
+
+if __name__ == '__main__':
+   if len(sys.argv) < 4:
+      print "Usage: src/print_jewel_color <path to image> <x> <y>"
+      sys.exit(1)
+
+   path = sys.argv[1]
+   bitmap = autopy.bitmap.Bitmap.open(path)
+   x = int(sys.argv[2])
+   y = int(sys.argv[3])
+
+   try:
+       jewel_bitmaps = get_jewel_bitmaps(bitmap)
+       colors = get_jewel_colors(jewel_bitmaps)
+       print "Average color:", colors[x][y]
+       
+   except board.NotVisible:
+       print "No board visible on that image."
+       sys.exit(2)
