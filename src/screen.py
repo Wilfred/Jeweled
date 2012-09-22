@@ -57,7 +57,8 @@ def get_jewel_names(jewel_colors):
         row = []
 
         for color in color_row:
-            row.append(get_closest_jewel(color))
+            jewel_name, jewel_type = get_closest_jewel(color)
+            row.append(jewel_name)
 
         rows.append(row)
 

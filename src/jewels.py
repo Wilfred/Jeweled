@@ -3,18 +3,24 @@ from math import sqrt
 
 # TODO: wildcard jewel
 JEWELS = {
-    "orange": (226, 130, 49),
-    "green": (40, 209, 71),
-    "purple": (150, 42, 158),
-    "white": (206, 206, 206),
-    "yellow": (202, 179, 37),
-    "red": (230, 24, 52),
-    "blue": (21, 113, 197)
+    ("orange", "normal"): (226, 130, 49),
+    ("green", "normal"): (40, 209, 71),
+    ("purple", "normal"): (150, 42, 158),
+    ("white", "normal"): (206, 206, 206),
+    ("yellow", "normal"): (202, 179, 37),
+    ("red", "normal"): (230, 24, 52),
+    ("blue", "normal"): (21, 113, 197)
 }
 
 
 def get_closest_jewel(color):
-    """Given a color from the screen, find the closest jewel color."""
+    """Given a color from the screen, find the closest jewel color and
+    kind.
+
+    >>> get_closest_jewel((225, 129, 50))
+    ("orange", "normal")
+
+    """
     first_color = JEWELS.keys()[0]
 
     # initialise
