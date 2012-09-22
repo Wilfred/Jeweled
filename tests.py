@@ -20,6 +20,10 @@ class BoardDetectionTest(TestCase):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_dark_background.png")
         get_position(bitmap) # throws board.NotVisible if no position
 
+    def test_snow_board_detection(self):
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_snow.png")
+        get_position(bitmap) # throws board.NotVisible if no position
+
     def test_part_board(self):
         """If we can only see part of the board, we shouldn't say we
         can detect it.
