@@ -51,7 +51,7 @@ Running the tests:
 
 ## Scores
 
-Highest score achieved: 363,760
+Highest score achieved: 1,298,550
 
 How scores are calculated: http://support.popcap.com/bejeweled-html5
 

@@ -4,6 +4,7 @@ from math import sqrt
 # TODO: wildcard jewel
 JEWELS = {
     ("orange", "normal"): (226, 130, 49),
+    ("orange", "cross"): (245, 171, 132),
     ("green", "normal"): (40, 209, 71),
     ("green", "fire"): (84, 238, 115),
     ("green", "cross"): (72, 223, 120),
