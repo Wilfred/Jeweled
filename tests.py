@@ -176,8 +176,7 @@ class MovesTest(TestCase):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board2.png")
         grid = get_current_grid(bitmap)
 
-        grid = get_swapped_position(grid, (6, 2), (7, 2))
-        final_grid = get_grid_after_move(grid)
+        final_grid = get_grid_after_move(grid, ((6, 2), (7, 2)))
 
         expected_final_grid = [
             ['purple', 'green', 'green', 'yellow', 'white', 'blue', None, 'yellow'],

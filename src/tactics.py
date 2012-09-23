@@ -95,13 +95,14 @@ def get_scoring_moves(grid):
     return scoring_moves
 
 
-def get_grid_after_move(grid):
+def get_grid_after_move(grid, move):
     """Given a grid where some jewels are lined up, remove those lines
     and move jewels down to fill the gaps. Note we just put None where
     we don't know what will fill the gap.
 
     """
-    grid = deepcopy(grid)
+    move_a, move_b = move
+    grid = get_swapped_position(grid, move_a, move_b)
     
     # find the jewels that will disappear
     removed_jewels = set()
