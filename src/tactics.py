@@ -111,21 +111,24 @@ def get_grid_after_move(grid):
 
     # remove them
     for x, y in removed_jewels:
-        print "Removing jewel:", (x, y)
         grid[y][x] = None
 
     # move all the jewels down if there's a space below
-    # TODO: just use a 'while changed' loop instead
-    for y in range(board.SIZE - 1):
-        for x in range(board.SIZE):
+    # repeating until we can't move anything down any further
+    changed = True
+    while changed:
+        changed = False
 
-            if grid[y + 1][x] is None:
-                # empty position below, move this one down
-                for above_y in range(y):
-                    grid[above_y + 1][x] = grid[above_y][x]
+        for y in range(board.SIZE - 1):
+            for x in range(board.SIZE):
 
-                # set the top position to None, because we don't know
-                # what will fill it
-                grid[0][x] = None
+                current_jewel = grid[y][x]
+                jewel_below = grid[y + 1][x]
+                if current_jewel is not None and jewel_below is None:
+                    # empty position below, move this one down
+                    grid[y + 1][x] = grid[y][x]
+                    grid[y][x] = None
+
+                    changed = True
 
     return grid

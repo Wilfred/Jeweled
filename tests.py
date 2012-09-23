@@ -179,6 +179,15 @@ class MovesTest(TestCase):
         grid = get_swapped_position(grid, (6, 2), (7, 2))
         final_grid = get_grid_after_move(grid)
 
-        from pprint import pprint
-        pprint(final_grid)
-        1/0
+        expected_final_grid = [
+            ['purple', 'green', 'green', 'yellow', 'white', 'blue', None, 'yellow'],
+            ['white', 'blue', 'red', 'blue', 'purple', 'orange', None, 'white'],
+            ['purple', 'purple', 'orange', 'yellow', 'white', 'blue', None, 'orange'],
+            ['red', 'green', 'blue', 'purple', 'red', 'yellow', 'purple', 'blue'],
+            ['blue', 'yellow', 'blue', 'yellow', 'orange', 'white', 'green', 'red'],
+            ['orange', 'yellow', 'red', 'green', 'red', 'yellow', 'yellow', 'purple'],
+            ['purple', 'green', 'white', 'blue', 'orange', 'orange', 'blue', 'purple'],
+            ['blue', 'red', 'white', 'purple', 'yellow', 'orange', 'green', 'green']]
+
+        self.assertEqual(expected_final_grid, final_grid)
+
