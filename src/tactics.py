@@ -89,9 +89,6 @@ def get_scoring_moves(grid):
         if scoring_lines > 0:
             scoring_moves.append(move)
 
-    # sort the moves so the highest on the board comes first. Ideally
-    # we'd find the rows that are highest rather than the moves.
-    scoring_moves.sort(key=lambda ((from_x, from_y), (to_x, to_y)): (from_y, to_y))
     return scoring_moves
 
 
@@ -133,3 +130,36 @@ def get_grid_after_move(grid, move):
                     changed = True
 
     return grid
+
+
+def get_best_move(grid):
+    """Get all the possible moves that will remove jewels, then return
+    the best choice.
+
+    """
+    scoring_moves = get_scoring_moves(grid)
+
+    # look at all the possible moves, and find those that have the
+    # most possible moves afterward
+    max_future_moves = -1 # every possible move will have more than this
+    best_moves = []
+    for move in scoring_moves:
+        future_moves = len(get_scoring_moves(get_grid_after_move(grid, move)))
+
+        if future_moves > max_future_moves:
+            max_future_moves = future_moves
+            best_moves = [move]
+        elif future_moves == max_future_moves:
+            best_moves.append(move)
+
+    if not best_moves:
+        return None
+
+    print "The best moves are:", best_moves
+    print "Which all have", max_future_moves, "possible future moves"
+
+    # sort the moves so the highest on the board comes first. If we
+    # looked further ahead then counting the how many future moves
+    # would be sufficient.
+    best_moves.sort(key=lambda ((from_x, from_y), (to_x, to_y)): (from_y, to_y))
+    return best_moves[0]

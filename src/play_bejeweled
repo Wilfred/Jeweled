@@ -13,7 +13,7 @@ import autopy
 
 import board
 import mouse
-from tactics import get_scoring_moves
+from tactics import get_scoring_moves, get_best_move
 from screen import get_current_grid
 
 
@@ -26,14 +26,13 @@ if __name__ == '__main__':
         try:
             screen_bitmap = autopy.bitmap.capture_screen()
             grid = get_current_grid(screen_bitmap)
-            scoring_moves = get_scoring_moves(grid)
+            move = get_best_move(grid)
 
-            # we choose the highest move on the board that we can see
-            if scoring_moves:
-                move_a, move_b = scoring_moves[0]
+            if move:
+                move_a, move_b = move
                 mouse.swap_jewels(screen_bitmap, move_a, move_b)
             else:
-                print "Can't see any scoring moves."
+                print "Can't see any possible moves."
 
         except board.NotVisible:
             print "No board visible."
