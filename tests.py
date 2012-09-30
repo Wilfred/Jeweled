@@ -181,7 +181,7 @@ class MovesTest(TestCase):
     def test_valid_moves(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board2.png")
         grid = get_current_grid(bitmap)
-        scoring_moves = get_scoring_moves(grid)
+        scoring_moves = list(get_scoring_moves(grid))
 
         expected_moves = [((6,2), (7,2)), ((6, 3), (7, 3))]
 

@@ -81,17 +81,13 @@ def get_scoring_moves(grid):
     more jewels in a line.
 
     """
-    scoring_moves = []
-    
     for move in MOVES:
         move_a, move_b = move
         grid_after_move = get_swapped_position(grid, move_a, move_b)
 
         scoring_lines = count_scoring_lines(grid_after_move)
         if scoring_lines > 0:
-            scoring_moves.append(move)
-
-    return scoring_moves
+            yield move
 
 
 def get_grid_after_move(grid, move):
@@ -151,7 +147,7 @@ def get_best_move(grid):
     max_future_moves = -1 # every possible move will have more than this
     best_moves = []
     for move in scoring_moves:
-        future_moves = len(get_scoring_moves(get_grid_after_move(grid, move)))
+        future_moves = len(list(get_scoring_moves(get_grid_after_move(grid, move))))
 
         if future_moves > max_future_moves:
             max_future_moves = future_moves
