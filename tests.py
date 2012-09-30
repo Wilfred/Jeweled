@@ -101,6 +101,35 @@ class JewelDetectionTest(TestCase):
         grid = get_current_grid(bitmap)
         self.assertEqual(grid[1][4], 'white')
 
+    def test_all(self):
+        """Although the other tests should be sufficient, we have an
+        extra test of each jewel since our input is noisy.
+
+        """
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_dark_background.png")
+        grid = get_current_grid(bitmap)
+        
+        self.assertEqual(grid[0][1], 'white')
+        self.assertEqual(grid[1][7], 'white')
+
+        self.assertEqual(grid[0][0], 'orange')
+        self.assertEqual(grid[7][3], 'orange')
+
+        self.assertEqual(grid[0][3], 'green')
+        self.assertEqual(grid[0][7], 'green')
+
+        self.assertEqual(grid[0][5], 'purple')
+        self.assertEqual(grid[7][7], 'purple')
+
+        self.assertEqual(grid[1][5], 'yellow')
+        self.assertEqual(grid[5][3], 'yellow')
+
+        self.assertEqual(grid[0][2], 'red')
+        self.assertEqual(grid[6][7], 'red')
+
+        self.assertEqual(grid[7][5], 'blue')
+        self.assertEqual(grid[7][6], 'blue')
+
 
 class CrossJewelDetectionTest(TestCase):
     def test_yellow_cross(self):
