@@ -63,6 +63,19 @@ class JewelDetectionTest(TestCase):
         grid = get_current_grid(bitmap)
         self.assertEqual(grid[0][0], 'green')
 
+    def test_board_shine(self):
+        """Test a board that's having the diagonal shine scroll across
+        it.
+
+        """
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/board_with_shine.png")
+        grid = get_current_grid(bitmap)
+        
+        self.assertEqual(grid[7][4], 'white')
+        self.assertEqual(grid[6][5], 'green')
+        self.assertEqual(grid[5][6], 'blue')
+        self.assertEqual(grid[4][7], 'purple')
+
     def test_blue(self):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board1.png")
         grid = get_current_grid(bitmap)
