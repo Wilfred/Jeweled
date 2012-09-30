@@ -102,37 +102,42 @@ def get_grid_after_move(grid, move):
     """
     move_a, move_b = move
     grid = get_swapped_position(grid, move_a, move_b)
-    
-    # find the jewels that will disappear
-    removed_jewels = set()
-    for line in get_scoring_lines(grid):
-        for jewel in line: # of the form (x, y)
-            removed_jewels.add(jewel)
 
-    # remove them
-    for x, y in removed_jewels:
-        grid[y][x] = None
+    jewels_removed = True
+    while jewels_removed:
+        jewels_removed = False
+        
+        # find the jewels that will disappear
+        removed_jewels = set()
+        for line in get_scoring_lines(grid):
+            for jewel in line: # of the form (x, y)
+                removed_jewels.add(jewel)
 
-    # move all the jewels down if there's a space below
-    # repeating until we can't move anything down any further
-    changed = True
-    while changed:
-        changed = False
+                jewels_removed = True
 
-        for y in range(board.SIZE - 1):
-            for x in range(board.SIZE):
+        # remove them
+        for x, y in removed_jewels:
+            grid[y][x] = None
 
-                current_jewel = grid[y][x]
-                jewel_below = grid[y + 1][x]
-                if current_jewel is not None and jewel_below is None:
-                    # empty position below, move this one down
-                    grid[y + 1][x] = grid[y][x]
-                    grid[y][x] = None
+        # move all the jewels down if there's a space below
+        # repeating until we can't move anything down any further
+        changed = True
+        while changed:
+            changed = False
 
-                    changed = True
+            for y in range(board.SIZE - 1):
+                for x in range(board.SIZE):
+
+                    current_jewel = grid[y][x]
+                    jewel_below = grid[y + 1][x]
+                    if current_jewel is not None and jewel_below is None:
+                        # empty position below, move this one down
+                        grid[y + 1][x] = grid[y][x]
+                        grid[y][x] = None
+
+                        changed = True
 
     return grid
-
 
 def get_best_move(grid):
     """Get all the possible moves that will remove jewels, then return

@@ -4,7 +4,7 @@ import autopy
 
 from board import get_position, NotVisible
 from screen import get_current_grid
-from tactics import get_scoring_moves, get_swapped_position, get_grid_after_move
+from tactics import get_scoring_moves, get_grid_after_move, count_scoring_lines
 
 
 class BoardDetectionTest(TestCase):
@@ -204,7 +204,36 @@ class MovesTest(TestCase):
 
         self.assertEqual(expected_final_grid, final_grid)
 
-    def test_valid_moves_sparse(self):
+    def test_move_outcome_multiple_lines(self):
+        """Test when lining up three jewels makes more line up, that
+        we iterate until there are no more lines to remove.
+
+        """
+        grid = [
+            ['green', 'yellow', 'purple', 'green', 'white', 'yellow', 'blue', 'yellow'],
+            ['yellow', 'red', 'yellow', 'blue', 'orange', 'white', 'yellow', 'yellow'],
+            ['blue', 'purple', 'orange', 'white', 'purple', 'blue', 'blue', 'red'],
+            ['green', 'purple', 'red', 'yellow', 'green', 'white', 'yellow', 'yellow'],
+            ['blue', 'green', 'red', 'white', 'purple', 'orange', 'white', 'yellow'],
+            ['yellow', 'white', 'white', 'blue', 'orange', 'white', 'yellow', 'red'],
+            ['purple', 'green', 'blue', 'red', 'yellow', 'blue', 'yellow', 'purple'],
+            ['blue', 'green', 'yellow', 'orange', 'red', 'green', 'red', 'red']]
+
+        final_grid = get_grid_after_move(grid, ((5, 4), (6, 4)))
+
+        expected_final_grid = [
+            ['green', 'yellow', 'purple', 'green', 'white', None, None, None],
+            ['yellow', 'red', 'yellow', 'blue', 'orange', None, 'blue', 'yellow'],
+            ['blue', 'purple', 'orange', 'white', 'purple', None, 'yellow', 'yellow'],
+            ['green', 'purple', 'red', 'yellow', 'green', None, 'blue', 'red'],
+            ['blue', 'green', 'red', 'white', 'purple', 'white', 'orange', 'yellow'],
+            ['yellow', 'white', 'white', 'blue', 'orange', 'blue', 'yellow', 'red'],
+            ['purple', 'green', 'blue', 'red', 'yellow', 'blue', 'yellow', 'purple'],
+            ['blue', 'green', 'yellow', 'orange', 'red', 'green', 'red', 'red']]
+
+        self.assertEqual(final_grid, expected_final_grid)
+
+    def test_scoring_rows_sparse(self):
         """Empty grid positions are not scoring rows"""
         grid = [
             ['purple', 'green', 'green', 'yellow', 'white', 'blue', None, 'yellow'],
@@ -216,5 +245,4 @@ class MovesTest(TestCase):
             ['purple', 'green', 'white', 'blue', 'orange', 'orange', 'blue', 'purple'],
             ['blue', 'red', 'white', 'purple', 'yellow', 'orange', 'green', 'green']]
 
-        scoring_moves = get_scoring_moves(grid)
-        self.assertEqual(scoring_moves, [])
+        self.assertEqual(count_scoring_lines(grid), 0)
