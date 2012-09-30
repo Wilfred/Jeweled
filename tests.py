@@ -43,6 +43,14 @@ class BoardDetectionTest(TestCase):
         bitmap = autopy.bitmap.Bitmap.open("sample_images/board_left_part.png")
         self.assertRaises(NotVisible, get_position, bitmap)
 
+    def test_black_screen(self):
+        """Just because we look for a black line, does not mean a
+        screen with a lot of black should be detected as a board.
+
+        """
+        bitmap = autopy.bitmap.Bitmap.open("sample_images/terminal.png")
+        self.assertRaises(NotVisible, get_position, bitmap)
+
 
 class JewelDetectionTest(TestCase):
     def test_purple(self):

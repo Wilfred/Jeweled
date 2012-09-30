@@ -14,27 +14,26 @@ HEIGHT_IN_PX = 485
 
 def get_position(screen_bitmap):
     """Find the co-ordinates of the top left corner of the board."""
-    board_corner = autopy.bitmap.Bitmap.open('resources/board_edge.png')
+    board_left_edge = autopy.bitmap.Bitmap.open('resources/board_edge.png')
 
     # we search for the left edge of the board. Since autopy searches
     # left to right, find_bitmap returns the correct co-ordinates
-    board_position = screen_bitmap.find_bitmap(board_corner)
+    board_edge_positions = screen_bitmap.find_every_bitmap(board_left_edge)
 
-    if board_position:
-        raw_x, raw_y = board_position
+    if len(board_edge_positions) != 1:
+        raise NotVisible()
+    
+    board_position = board_edge_positions[0]
+    raw_x, raw_y = board_position
         
-        # check the diagonally opposite corner is on screen
-        bottom_right_x = raw_x + WIDTH_IN_PX
-        bottom_right_y = raw_y + HEIGHT_IN_PX
-        if not screen_bitmap.point_in_bounds(bottom_right_x, bottom_right_y):
-            raise NotVisible()
-
-        # the board itself is offset from the left edge
-        x = raw_x + 199
-        y = raw_y + 32
-
-        return (x, y)
-    else:
+    # check the diagonally opposite corner is on screen
+    bottom_right_x = raw_x + WIDTH_IN_PX
+    bottom_right_y = raw_y + HEIGHT_IN_PX
+    if not screen_bitmap.point_in_bounds(bottom_right_x, bottom_right_y):
         raise NotVisible()
 
+    # the board itself is offset from the left edge
+    x = raw_x + 199
+    y = raw_y + 32
 
+    return (x, y)
