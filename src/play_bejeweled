@@ -37,4 +37,4 @@ if __name__ == '__main__':
         except board.NotVisible:
             print "No board visible."
 
-        sleep(1)
+        sleep(0.6)
