@@ -204,3 +204,17 @@ class MovesTest(TestCase):
 
         self.assertEqual(expected_final_grid, final_grid)
 
+    def test_valid_moves_sparse(self):
+        """Empty grid positions are not scoring rows"""
+        grid = [
+            ['purple', 'green', 'green', 'yellow', 'white', 'blue', None, 'yellow'],
+            ['white', 'blue', 'red', 'blue', 'purple', 'orange', None, 'white'],
+            ['purple', 'purple', 'orange', 'yellow', 'white', 'blue', None, 'orange'],
+            ['red', 'green', 'blue', 'purple', 'red', 'yellow', 'purple', 'blue'],
+            ['blue', 'yellow', 'blue', 'yellow', 'orange', 'white', 'green', 'red'],
+            ['orange', 'yellow', 'red', 'green', 'red', 'yellow', 'yellow', 'purple'],
+            ['purple', 'green', 'white', 'blue', 'orange', 'orange', 'blue', 'purple'],
+            ['blue', 'red', 'white', 'purple', 'yellow', 'orange', 'green', 'green']]
+
+        scoring_moves = get_scoring_moves(grid)
+        self.assertEqual(scoring_moves, [])

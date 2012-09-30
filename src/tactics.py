@@ -21,15 +21,17 @@ def get_scoring_lines(rows):
     for y, row in enumerate(rows):
         for x in range(len(row) - 2):
 
-            if row[x] == row[x+1] == row[x+2]:
-                yield [(x, y), (x+1, y), (x+2, y)]
+            if row[x] is not None:
+                if row[x] == row[x+1] == row[x+2]:
+                    yield [(x, y), (x+1, y), (x+2, y)]
 
     # vertical lines of 3
     for y in range(len(rows) - 2):
         for x in range(len(rows[0])):
 
-            if rows[y][x] == rows[y+1][x] == rows[y+2][x]:
-                yield [(x, y), (x, y+1), (x, y+2)]
+            if rows[y][x] is not None:
+                if rows[y][x] == rows[y+1][x] == rows[y+2][x]:
+                    yield [(x, y), (x, y+1), (x, y+2)]
 
 
 def get_all_moves():
