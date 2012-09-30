@@ -162,9 +162,6 @@ def get_best_move(grid):
     if not best_moves:
         return None
 
-    print "The best moves are:", best_moves
-    print "Which all have", max_future_moves, "possible future moves"
-
     # sort the moves so the highest on the board comes first. If we
     # looked further ahead then counting the how many future moves
     # would be sufficient.
